@@ -17,7 +17,7 @@ class Usuario(Base):
     password = Column (String(25), nullable = False )
     email = Column(String(30), unique= True, nullable = False)
     userName = Column (String(30), unique= True, nullable = False)
-    subscriptionDate = Column(Date(20), nullable = False)
+    subscriptionDate = Column(Date(), nullable = False)
 
 
 class Planetas(Base):
@@ -42,7 +42,19 @@ class FavoritosPlanetas(Base):
     __tablename__= 'favoritosPlanetas'
     id = Column ( Integer, primary_key = True )
     usuario_id = Column (Integer, ForeignKey('usuario.id'))
-    planeta_id = Column(Integer, ForeignKey('planeta.id'))
+    planeta_id = Column(Integer, ForeignKey('planetas.id'))
+
+class FavoritosPersonajes(Base):
+    __tablename__= 'favoritosPersonajes'
+    id = Column ( Integer, primary_key = True )
+    usuario_id = Column (Integer, ForeignKey('usuario.id'))
+    planeta_id = Column(Integer, ForeignKey('personajes.id'))
+
+class FavoritosVehiculos(Base):
+    __tablename__= 'favoritosVehiculos'
+    id = Column ( Integer, primary_key = True )
+    usuario_id = Column (Integer, ForeignKey('usuario.id'))
+    planeta_id = Column(Integer, ForeignKey('vehiculos.id'))
 
 
     def to_dict(self):
