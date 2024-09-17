@@ -24,18 +24,23 @@ class Planetas(Base):
     __tablename__ = 'planetas'
     id = Column(Integer, primary_key=True)
     name = Column(String(25), nullable = False )
+    usuario = relationship(Usuario)
+    
 
 class Personajes(Base):
     __tablename__ = 'personajes'
     id = Column(Integer, primary_key=True)
     firstname = Column(String(25), nullable= False)
     lastname = Column (String(25), nullable = False)
+    usuario = relationship(Usuario)
+    
 
 
 class Vehiculos(Base):
     __tablename__ = 'vehiculos'
     id = Column(Integer, primary_key=True)
     name = Column(String(25), nullable = False)
+    usuario = relationship(Usuario)
 
 
 class FavoritosPlanetas(Base):
@@ -43,12 +48,14 @@ class FavoritosPlanetas(Base):
     id = Column ( Integer, primary_key = True )
     usuario_id = Column (Integer, ForeignKey('usuario.id'))
     planeta_id = Column(Integer, ForeignKey('planetas.id'))
+    
 
 class FavoritosPersonajes(Base):
     __tablename__= 'favoritosPersonajes'
     id = Column ( Integer, primary_key = True )
     usuario_id = Column (Integer, ForeignKey('usuario.id'))
     planeta_id = Column(Integer, ForeignKey('personajes.id'))
+   
 
 class FavoritosVehiculos(Base):
     __tablename__= 'favoritosVehiculos'
